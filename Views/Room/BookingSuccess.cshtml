@@ -1,0 +1,238 @@
+﻿@model HotelManagement.Models.BookingSuccessViewModel
+
+<style>
+    .success-page {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .success-header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .success-icon {
+        width: 80px;
+        height: 80px;
+        background: #28a745;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+    }
+
+        .success-icon i {
+            color: white;
+            font-size: 40px;
+        }
+
+    .booking-id {
+        background: #f8f9fa;
+        border-radius: 20px;
+        padding: 8px 15px;
+        display: inline-block;
+        font-size: 14px;
+        color: #666;
+        margin-top: 10px;
+    }
+
+    .confirmation-message {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .details-container {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .detail-item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .detail-label {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .detail-value {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .actions-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .btn-home {
+        background: #007bff;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+        .btn-home:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+
+
+    .timeline {
+        margin: 40px 0;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .timeline-point {
+        flex: 1;
+        text-align: center;
+        position: relative;
+    }
+
+        .timeline-point::before {
+            content: '';
+            height: 2px;
+            width: 100%;
+            background: #e9ecef;
+            position: absolute;
+            top: 15px;
+            left: 50%;
+        }
+
+        .timeline-point:last-child::before {
+            display: none;
+        }
+
+    .point-icon {
+        width: 30px;
+        height: 30px;
+        background: #28a745;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        position: relative;
+        z-index: 1;
+    }
+
+        .point-icon i {
+            color: white;
+            font-size: 14px;
+        }
+
+    .point-label {
+        font-size: 12px;
+        color: #666;
+    }
+</style>
+
+<div class="success-page">
+    <div class="success-header">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <h1>Reservation Confirmed!</h1>
+        <div class="booking-id">Booking ID: @Model.Reservation.Reservation_ID</div>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-point">
+            <div class="point-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="point-label">Booked</div>
+        </div>
+        <div class="timeline-point">
+            <div class="point-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="point-label">Processing</div>
+        </div>
+        <div class="timeline-point">
+            <div class="point-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="point-label">Confirmed</div>
+        </div>
+    </div>
+
+    <div class="confirmation-message">
+        <p>Thank you for choosing our hotel! We've received your reservation request and are processing it.</p>
+        <p>A confirmation email has been sent to <strong>@Model.Reservation.Client.Client_email</strong></p>
+    </div>
+
+    <div class="details-container">
+        <h3>Reservation Details</h3>
+        <div class="details-grid">
+            <div class="detail-item">
+                <span class="detail-label">Check-in Date</span>
+                <span class="detail-value">@Model.Reservation.Reservation_In</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Check-out Date</span>
+                <span class="detail-value">@Model.Reservation.Reservation_Out</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Room Number</span>
+                <span class="detail-value">@Model.Reservation.Reservation_Room_Number</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Room Type</span>
+                <span class="detail-value">@Model.Reservation.Reservation_Room_Type</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Guest Name</span>
+                <span class="detail-value">@Model.Reservation.Client.Client_FirstName @Model.Reservation.Client.Client_LastName</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Status</span>
+                <span class="status-badge">Reservation Confirmed</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions-container">
+        <a href="@Url.Action("Index", "Home")" class="btn-home">
+            <i class="fas fa-home"></i> Return to Homepage
+        </a>
+    </div>
+
+</div>

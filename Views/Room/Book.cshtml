@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Room</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link href="~/css/booking.css" rel="stylesheet" />
+    </head>
+<body>
+    @model HotelManagement.Models.BookViewModel
+
+    <div class="booking-container">
+        <div class="booking-header">
+            <h2>Book Your Perfect Stay</h2>
+        </div>
+
+        <form asp-action="Book" method="post" class="booking-form">
+            <!-- Hidden input for Room Number -->
+            <input type="hidden" name="roomNumber" value="@Model.RoomNumber" />
+
+            <!-- Room Information Section -->
+            <div class="room-info">
+                <div class="room-info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-door-open"></i>
+                        <div>
+                            <strong>Room Number</strong>
+                            <div>@Model.RoomNumber</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-bed"></i>
+                        <div>
+                            <strong>Room Type</strong>
+                            <div>@Model.RoomType</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Room Phone</strong>
+                            <div>@Model.RoomPhone</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guest Information Section -->
+            <div class="form-section">
+                <div class="form-section-title">Guest Information</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" name="ClientFirstName" id="ClientFirstName" value="@Model.ClientFirstName" required>                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" name="ClientLastName" id="ClientLastName" value="@Model.ClientLastName" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" name="ClientEmail" id="ClientEmail" value="@Model.ClientEmail" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" class="form-control" name="ClientPhone" id="ClientPhone" value="@Model.ClientPhone" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Details Section -->
+            <div class="form-section">
+                <div class="form-section-title">Booking Details</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="checkIn">Check-in Date</label>
+                            <input type="date" class="form-control" name="checkIn" id="checkIn" value="@Model.StartDate.ToString("yyyy-MM-dd")" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="checkOut">Check-out Date</label>
+                            <input type="date" class="form-control" name="checkOut" id="checkOut" value="@Model.EndDate.ToString("yyyy-MM-dd")" required>
+                        </div>
+                    </div>
+                </div>
+              
+               
+            </div>
+
+            <!-- Price Calculator -->
+            <div class="price-calculator">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="total-price">
+                            Total: $@Model.RoomPrice
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button type="submit" class="btn btn-book mr-2">Confirm Booking</button>
+                        <a href="@Url.Action("Index", "Room")" class="btn btn-cancel">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>document.addEventListener('DOMContentLoaded', function () {
+            // Set minimum date for check-in to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('checkIn').min = today;
+
+            // Update check-out minimum date when check-in is selected
+            document.getElementById('checkIn').addEventListener('change', function () {
+                const checkInDate = new Date(this.value);
+                const checkOutMin = new Date(checkInDate);
+                checkOutMin.setDate(checkOutMin.getDate() + 1);
+                document.getElementById('checkOut').min = checkOutMin.toISOString().split('T')[0];
+
+                // Reset check-out date if it's before new check-in date
+                const checkOut = document.getElementById('checkOut');
+                if (checkOut.value && new Date(checkOut.value) <= checkInDate) {
+                    checkOut.value = checkOutMin.toISOString().split('T')[0];
+                }
+            });
+        });</script>
+</body>
+</html>

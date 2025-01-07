@@ -1,0 +1,185 @@
+﻿@{
+    ViewData["Title"] = "Hotel Management - Welcome";
+}
+
+<div class="container-fluid p-0">
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="text-center">
+            <div class="blurbg">
+                <h1 class="display-4">Welcome to DOTNET Hotel</h1>
+                <p class="lead">Experience seamless bookings and comfortable stays with our Hotels.</p>
+                <a href="/User/register" class="btn btn-dark btn-lg   me-3">Get Started</a>
+                <a href="/Room/AvailableRooms" class="btn btn-outline-dark btn-lg me-3 ">Check Available Rooms</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rooms Section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Rooms & Suites</h2>
+
+        <div class="d-flex justify-content-center flex-wrap gap-5">
+            <!-- Suite Room -->
+            <div class="card shadow-sm" style="width: 18rem;">
+                <img src="~/images/suiteroom.jpg" class="card-img-top" alt="Suite Room">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Suite Room</h5>
+                    <p class="card-text">Experience luxury in our spacious suites with premium amenities.</p>
+                    <a href="/Room/AvailableRooms?type=suite" class="btn btn-outline-dark btn-lg me-2">Explore Suites</a>
+                </div>
+            </div>
+
+            <!-- Double Room -->
+            <div class="card shadow-sm" style="width: 18rem;">
+                <img src="~/images/doubleroom.jpg.webp" class="card-img-top" alt="Double Room">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Double Room</h5>
+                    <p class="card-text">Perfect for couples, offering comfort and privacy at its best.</p>
+                    <a href="/Room/AvailableRooms?type=double" class="btn btn-outline-dark btn-lg me-2">Explore Double Rooms</a>
+                </div>
+            </div>
+
+            <!-- Single Room -->
+            <div class="card shadow-sm" style="width: 18rem;">
+                <img src="~/images/singleroom.jpg" class="card-img-top" alt="Single Room">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Single Room</h5>
+                    <p class="card-text">Ideal for solo travelers, equipped with all essential facilities.</p>
+                    <a href="/Room/AvailableRooms?type=simple" class="btn btn-outline-dark btn-lg me-2">Explore Single Rooms</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Restaurant Section -->
+    <div class="restaurant-section text-white py-5" style="background-image: url('/images/restaurant.jpg'); background-size: cover; background-position: center; background-color: rgba(0, 0, 0, 0.8); ">
+        <div class="container">
+            <!-- Categories -->
+            <div class="text-center mb-5">
+                <h2 class="text-uppercase fw-bold">Restaurant Menu</h2>
+                <nav class="d-flex justify-content-center gap-4 mt-3">
+                    <a href="#mains" class="text-white text-decoration-none fw-bold">Mains</a>
+                    <a href="#desserts" class="text-warning text-decoration-none fw-bold">Desserts</a>
+                    <a href="#drinks" class="text-white text-decoration-none fw-bold">Drinks</a>
+                </nav>
+            </div>
+
+            <!-- Menu Items -->
+            <div class="row">
+                <!-- Mains -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="fw-bold">$20.00</h5>
+                    <h6 class="mb-1">Murgh Tikka Masala</h6>
+                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="fw-bold">$35.00</h5>
+                    <h6 class="mb-1">Fish Moilee</h6>
+                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="fw-bold">$15.00</h5>
+                    <h6 class="mb-1">Safed Gosht</h6>
+                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                </div>
+
+                <!-- Desserts -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="fw-bold">$10.00</h5>
+                    <h6 class="mb-1">French Toast Combo</h6>
+                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="fw-bold">$8.35</h5>
+                    <h6 class="mb-1">Veggie Omelet</h6>
+                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="fw-bold">$22.00</h5>
+                    <h6 class="mb-1">Chorizo & Egg Omelet</h6>
+                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Testimonials Carousel -->
+    <div id="testimonialsCarousel" class="carousel slide my-5" data-bs-ride="carousel">
+        <h2 class="text-center mb-4">What Our Clients Say</h2>
+        <div class="carousel-inner">
+            <!-- Testimonial 1 -->
+            <div class="carousel-item active">
+                <div class="d-flex flex-column align-items-center">
+                    <p class="text-center w-75 mx-auto">
+                        "The rooms were spotless, and the staff was incredibly accommodating. Highly recommend!"
+                    </p>
+                    <h6>John Doe</h6>
+                    <small>Stayed in Deluxe Room</small>
+                </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="carousel-item">
+                <div class="d-flex flex-column align-items-center">
+                    <p class="text-center w-75 mx-auto">
+                        "A truly luxurious experience! The service exceeded all expectations."
+                    </p>
+                    <h6>Jane Smith</h6>
+                    <small>Stayed in Suite</small>
+                </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="carousel-item">
+                <div class="d-flex flex-column align-items-center">
+                    <p class="text-center w-75 mx-auto">
+                        "Great location, excellent amenities, and a welcoming atmosphere."
+                    </p>
+                    <h6>Alice Brown</h6>
+                    <small>Stayed in Standard Room</small>
+                </div>
+            </div>
+        </div>
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features py-5 text-center">
+        <div class="container">
+            <h2 class="mb-4">What We Offer</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-person-circle" style="font-size: 3rem;"></i>
+                    </div>
+                    <h4>Easy Account Management</h4>
+                    <p>Create and manage your account effortlessly.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-door-open" style="font-size: 3rem;"></i>
+                    </div>
+                    <h4>Room Availability</h4>
+                    <p>Check and book available rooms in real-time.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-headset" style="font-size: 3rem;"></i>
+                    </div>
+                    <h4>24/7 Support</h4>
+                    <p>Reach out to us anytime for assistance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

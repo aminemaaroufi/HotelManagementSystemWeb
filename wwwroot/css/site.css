@@ -1,0 +1,116 @@
+﻿.container {
+    margin-top: 50px;
+
+}
+
+form {
+    background: #f8f9fa; /* Light background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+form .form-group label {
+    font-weight: bold;
+}
+
+form .btn-primary {
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+form .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.room-section {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+   
+.roomcard {
+    background-color: ;
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.roomcard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.roomcard-img-top {
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.roomcard-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.roomcard-body {
+    padding: 20px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.restaurant-section {
+    width: 100vw;
+    height: 100vh;
+}
+
+.restaurant-section nav a:hover {
+    color: #ffc107; /* Highlight on hover */
+    text-decoration: underline;
+}
+
+.restaurant-section h5 {
+    color: #ffc107; /* Gold price text */
+}
+
+.restaurant-section h6 {
+    color: #ffc107; 
+}
+
+.restaurant-section p {
+    font-size: 0.9rem;
+    color: #ffc107; 
+}

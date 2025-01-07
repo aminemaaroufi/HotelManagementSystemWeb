@@ -1,0 +1,313 @@
+﻿@{
+    ViewData["Title"] = "Available Rooms";
+}
+@model IEnumerable<Room>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 80px 0;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .hero-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
+                opacity: 0.3;
+            }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .filters-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+            .room-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            }
+
+        .room-image {
+            height: 200px;
+            background: linear-gradient(45deg, #f1f5f9, #e2e8f0);
+            position: relative;
+        }
+
+        .room-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .badge-available {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .badge-occupied {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .room-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-type {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .room-number {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+        }
+
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background-color: #f1f5f9;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            color: #475569;
+        }
+
+        .room-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .btn-book {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+            .btn-book:hover {
+                transform: translateY(-2px);
+            }
+
+            .btn-book.available {
+                background-color: var(--primary-color);
+                border-color: var(--primary-color);
+            }
+
+                .btn-book.available:hover {
+                    background-color: var(--secondary-color);
+                    border-color: var(--secondary-color);
+                }
+
+            .btn-book.occupied {
+                background-color: var(--danger-color);
+                border-color: var(--danger-color);
+            }
+
+        .modal-content {
+            border-radius: 12px;
+            border: none;
+        }
+
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            padding: 20px;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .alert {
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        @@media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .room-image {
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="container text-center">
+            <h1 class="hero-title">Discover Our Luxurious Rooms</h1>
+            <p class="hero-subtitle">Experience comfort and elegance in every stay</p>
+        </div>
+    </div>
+
+    <div class="container">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>@TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <div class="row g-4">
+            @foreach (var room in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-card">
+                        <div class="room-image">
+                            <img src="~/images/suite1.jpg" class="card-img-top" alt="">
+                            <span class="room-badge @(room.Room_Free.ToLower() == "yes" ? "badge-available" : "badge-occupied")">
+                                <i class="fas @(room.Room_Free.ToLower() == "yes" ? "fa-check-circle" : "fa-times-circle") me-2"></i>
+                                @(room.Room_Free.ToLower() == "yes" ? "Available" : "Occupied")
+                            </span>
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-type">@room.Room_Type</h3>
+                            <p class="room-number">Room @room.Room_Number</p>
+                            <div class="room-features">
+                                <span class="feature-item">
+                                    <i class="fas fa-wifi"></i> WiFi
+                                </span>
+                                <span class="feature-item">
+                                    <i class="fas fa-tv"></i> TV
+                                </span>
+                                <span class="feature-item">
+                                    <i class="fas fa-snowflake"></i> AC
+                                </span>
+                                <span class="feature-item">
+                                    <i class="fas fa-coffee"></i> Coffee
+                                </span>
+                            </div>
+                            <div class="room-price">
+                                $@room.Room_Price<span class="fs-6 text-muted">/night</span>
+                            </div>
+                            @if (room.Room_Free.ToLower() == "yes")
+                            {
+                                <a href="@Url.Action("Book", "Room", new { roomNumber = room.Room_Number })"
+                                   class="btn btn-primary btn-book available">
+                                    <i class="fas fa-calendar-check me-2"></i>Book Now
+                                </a>
+                            }
+                            else
+                            {
+                                <button class="btn btn-danger btn-book occupied" data-bs-toggle="modal" data-bs-target="#unavailableModal">
+                                    <i class="fas fa-lock me-2"></i>Not Available
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="modal fade" id="unavailableModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-exclamation-circle me-2"></i>Room Unavailable
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">This room is currently occupied. Please choose another room or check back later.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
